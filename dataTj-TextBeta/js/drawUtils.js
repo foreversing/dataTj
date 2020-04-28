@@ -111,6 +111,7 @@ function initThemeDataVirtual(){
         var divideTrenddatas = [
             {name: '教职工', value: [110, 112, 121, 154, 134, 120, 114, 121, 154, 134, 120, 114], xAxis: ["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
             {name: '学生', value: [130, 112, 114, 134, 124, 130, 110, 114, 134, 124, 130, 110], xAxis: ["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]}
+
         ];
         //师生传染病发展趋势
         dvChartData("line",$(".JS_DivideTrend")[0],"师生传染病发展趋势",divideTrenddatas, divideTrenddatas, divideTrenddatas);
@@ -120,6 +121,7 @@ function initThemeDataVirtual(){
          * */
         var studentAbsentBySickDatas =[
             {name: '', value: [14, 9, 12, 14, 11, 9, 6, 8, 7, 6, 5, 4], xAxis: ["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]}
+
         ];
         dvChartData("area",$(".JS_StudentAbsentBySick")[0],"师生传染病发展趋势","", studentAbsentBySickDatas, studentAbsentBySickDatas);
 
@@ -131,6 +133,7 @@ function initThemeDataVirtual(){
         var studentTeacherAlreadyTrendDatas = [
             {name: '教职工', value: [0.98, 0.97, 0.98, 0.96, 0.94, 0.98, 0.96, 0.99, 0.95, 0.93, 0.99, 0.98], xAxis: ["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
             {name: '学生', value: [0.98, 0.99, 0.98, 0.98, 0.99, 0.96, 0.98, 0.88, 0.96, 0.99, 0.88, 0.97], xAxis: ["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
+
         ];
 
         dvChartData("line",$(".JS_StudentTeacherAlreadyTrend")[0],"",studentTeacherAlreadyTrendDatas, studentTeacherAlreadyTrendDatas, studentTeacherAlreadyTrendDatas);
@@ -163,22 +166,102 @@ function initThemeDataVirtual(){
             {schoolname:"T2_哈尔滨市德强学校",classname:"三年二班123",name:"张德新",temp:"36.4",time:"04-11 09:18"},
             {schoolname:"T3_哈尔滨市德强学校",classname:"三年二班123",name:"张德新",temp:"36.4",time:"04-11 09:18"},
             {schoolname:"T4_哈尔滨市德强学校",classname:"三年二班123",name:"张德新",temp:"36.4",time:"04-11 09:18"}
+
         ];
         //监测动态
-        makeListItems(data);
+        dvMakeListItems(data);
 
+        var studentTeacherAbnormalTemperatureTrendDatas = [
+            {name: '教职工', value: [28, 33, 36, 35, 38, 37, 34, 36, 34, 32, 29, 29], xAxis: ["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
+            {name: '学生',  value: [130, 112, 114, 154, 124, 130, 110, 114, 134, 124, 130, 110], xAxis: ["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]}
 
-
+        ];
         //师生体温异常发展趋势
-        //dvChartData("line",$(".JS_TestChart")[0],"非在校就餐 113 人","", "", saetras);
+        dvChartData("line",$(".JS_StudentTeacherAbnormalTemperatureTrend")[0],"","", studentTeacherAbnormalTemperatureTrendDatas, studentTeacherAbnormalTemperatureTrendDatas);
+
 
 
         var saetras = [
             {value: 3658, name: "自带午饭", trend: [3648, 3636, 3640, 3648, 3636, 3640]},
             {value: 3713, name: "订餐", trend: [3723, 3735, 3731, 3723, 3735, 3731]},
+
         ];
         dvChartData("pieAndLine",$(".JS_TestChart")[0],"非在校就餐 113 人","", "", saetras);
+
+
+        /**
+         * 复学综合情况
+         * */
+        var recoveryStudentTeacherDatas = [
+            {name: '待复学学生', value: 28761, compareCurrentMonthAgo: 0, max: 11, min: 9, average: 10},
+            {name: '待复工教职工', value: 476, compareCurrentMonthAgo: 1, max: 11, min: 9, average: 10}
+
+        ];
+        //全面复工复学
+        dvSummaryInfo($(".JS_RecoveryStudentTeacher"),recoveryStudentTeacherDatas);
+
+        var increaseDivideRecoveryTrendDatas = [
+            {   name: '新增隔离教职工',value: [2, 3, 1, 1, 2, 2, 1, 3, 4, 2, 1, 2], xAxis:["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
+            {   name: '新增隔离学生', value: [5, 6, 4, 4, 5, 7, 6, 3, 5, 4, 2, 3], xAxis:["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
+            {   name: '新增复学学生', value: [110, 112, 121, 154, 198, 170, 124, 165, 175, 182, 192, 222], xAxis:["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
+            {   name: '新增复工教职工', value: [20, 30, 25, 38, 45, 56, 20, 35, 36, 27, 35, 65], xAxis:["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]}
+
+        ];
+        //复学-折线图dvIncreaseDivideRecoveryTrend
+        dvChartData("line",$(".JS_IncreaseDivideRecoveryTrend")[0],"",increaseDivideRecoveryTrendDatas, increaseDivideRecoveryTrendDatas, increaseDivideRecoveryTrendDatas);
+
+        //复学学校信息滚动
+        dvScroll_Height();
     } else if (current == 3){
+        /**
+         * 今日数据上报情况
+         * */
+
+        var dataUploadedRateDatas = [
+            {name: '', value: 0.65}
+
+        ];
+        //数据上报率
+        dvChartData("percent",$(".JS_DataUploadedRate")[0],"","", "", dataUploadedRateDatas);
+
+        var dataUploadedComprehensiveDatas = [
+            {name: '尚未上报学校', value: 3},
+            {name: '已上报学校', value: 46},
+            {name: '完成上报学校', value: 36}
+
+        ];
+        //全面复工复学
+        dvSummaryInfo($(".JS_DataUploadedComprehensive"),dataUploadedComprehensiveDatas);
+
+        /**
+         * 数据上报历史
+         * */
+        var timePoints = [
+            {date: "04/7", title: "共上报防疫数据196条,测温数据29936条", content: "学生病假2例，事假2例，体温异常10例(返哈隔离1人，隔离1人)，最高温度38.1"},
+            {date: "04/8", title: "共上报防疫数据398条,测温数据37406条", content: "学生病假2例，事假2例，体温异常10例(返哈隔离1人，隔离1人)，最高温度37.6"},
+            {date: "04/9", title: "共上报防疫数据586条,测温数据44879条", content: "学生病假2例，事假2例，体温异常10例(返哈隔离1人，隔离1人)，最高温度37.8"},
+            {date: "04/10", title: "共上报防疫数据989条,测温数据52360条", content: "学生病假2例，事假2例，体温异常10例(返哈隔离1人，隔离1人)，最高温度37.9"}
+        ];
+        //时序图
+        dvMakeTimeLine($("#timeline"),timePoints);
+
+
+        var reportSchoolListDatas = [
+            {schName:"哈尔滨市剑桥第三中学校",status:"未上报",reportTime:"","sort":3},
+            {schName:"哈尔滨市第六十四中学校",status:"未上报",reportTime:"","sort":3},
+            {schName:"哈尔滨市第一二二中学校",status:"未上报",reportTime:"","sort":3},
+            {schName:"哈尔滨市第四十六中学校",status:"未上报",reportTime:"","sort":3},
+            {schName:"哈尔滨市东方红中学校",status:"未上报",reportTime:"","sort":3},
+            {schName:"哈尔滨市第十一中学校",status:"未上报",reportTime:"","sort":3},
+            {schName:"哈尔滨市第六中学校",status:"未上报",reportTime:"","sort":3},
+            {schName:"哈尔滨市朝鲜族第一中学校",status:"未上报",reportTime:"","sort":3},
+            {schName:"哈尔滨市现代应用技术中等职业学校",status:"未上报",reportTime:"","sort":3},
+            {schName:"哈尔滨德强学校",status:"未上报",reportTime:"","sort":3},
+            {schName:"哈尔滨市第五十九中学校",status:"未上报",reportTime:"","sort":3},
+            {schName:"哈尔滨市第九中学",status:"未上报",reportTime:"","sort":3}
+        ]
+        //列表信息
+        dvInfoList($("#reportSchoolList"),reportSchoolListDatas);
     }
 }
 
@@ -211,8 +294,6 @@ function gotos(themeid)
                 theme.removeClass(inClass);
                 //刷新所有echart
                 initThemeDataVirtual();
-
-
             } );
         } );
     }
@@ -220,48 +301,16 @@ function gotos(themeid)
 
 
 
-var charts_JSON = [];
 
+
+
+var charts_JSON = [];
 function jsonForArray(objJson,property){
     var array=[];
     for(var item in objJson){
         array.push(objJson[item][property]);
     }
     return array;
-}
-
-//切换页面时 echart刷新方法 -- 有问题 待更新 dom对象存入失败
-function resetCharts(){
-    for(var item in charts_JSON){
-        var obj = charts_JSON[item].obj;
-        var opt = charts_JSON[item].opt;
-        obj = JSON.parse(obj);
-        var chartobj = echarts.init(obj);
-        chartobj.setOption(opt);
-        chartobj.resize()
-    }
-}
-
-
-
-var strs = "";
-//数据刷新效果
-function makeListItems(datas){
-    for (var it in datas) {
-        strs += "<li>"+
-            "<div class='list-flag'></div>"+
-            "<div class='list-textarea'>"+
-            "<div class='list-text1'>"+datas[it].schoolname+"</div>"+
-            "<div class='list-text2'>"+"  "+datas[it].classname+"-"+datas[it].name+" "+datas[it].temp+"℃（体温正常）"+"</div>"+
-            "<div class='list-text3'>"+datas[it].time+"</div>"+
-            "</div>"+
-            "</li> ";
-    }
-    var parent = $("#watcher");
-    parent.append(strs);
-    setTimeout(function () {
-        scroll_li();
-    },1000);
 }
 
 function scrollAfterAppends()
@@ -272,14 +321,10 @@ function scrollAfterAppends()
     var li_length = $("#watcher li").length;
     if (li_length > 2){
         first.animate({height: 0}, 1000, function() {
-            //first.css('height', height).appendTo(parent);
             first.remove();
-            parent.append(strs);
-            strs = "";
         });
     }
 }
-
 
 function randomNums(minNum, maxNum) {
     switch (arguments.length) {
@@ -296,7 +341,6 @@ function randomNums(minNum, maxNum) {
 }
 
 //数字翻牌效果
-
 function increase(objTarget) {
     var objTarget=$("#"+objTarget);
 
