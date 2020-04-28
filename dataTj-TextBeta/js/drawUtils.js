@@ -138,8 +138,25 @@ function initThemeDataVirtual(){
         /**
          * 体温监测
          * */
-        //scroll_Height();
-        //test
+
+        var abnormalTemperatureDatas = [
+            {name: '学生', value: 154, compareCurrentMonthAgo: 0, max: 11, min: 9, average: 10},
+            {name: '教师', value: 38, compareCurrentMonthAgo: 1, max: 11, min: 9, average: 10}
+
+         ];
+        //体温异常累计
+        dvSummaryInfo($(".JS_AbnormalTemperature"),abnormalTemperatureDatas);
+
+        var temperatureWatchDatas = [
+            {name: '学生正常', value: 7474, compareCurrentMonthAgo: 0, max: 11, min: 9, average: 10},
+            {name: '学生异常', value: 10, compareCurrentMonthAgo: 1, max: 11, min: 9, average: 10},
+            {name: '教职工正常', value: 66, compareCurrentMonthAgo: 0, max: 11, min: 9, average: 10},
+            {name: '教职工异常', value: 2, compareCurrentMonthAgo: 1, max: 11, min: 9, average: 10}
+
+        ];
+        //体温监测
+        dvSummaryInfo($(".JS_TemperatureWatch"),temperatureWatchDatas);
+
         var data = [
             {schoolname:"T_哈尔滨市德强学校",classname:"三年二班123",name:"张德新",temp:"36.4",time:"04-11 09:18"},
             {schoolname:"T1_哈尔滨市德强学校",classname:"三年二班123",name:"张德新",temp:"36.4",time:"04-11 09:18"},
@@ -147,7 +164,13 @@ function initThemeDataVirtual(){
             {schoolname:"T3_哈尔滨市德强学校",classname:"三年二班123",name:"张德新",temp:"36.4",time:"04-11 09:18"},
             {schoolname:"T4_哈尔滨市德强学校",classname:"三年二班123",name:"张德新",temp:"36.4",time:"04-11 09:18"}
         ];
+        //监测动态
         makeListItems(data);
+
+
+
+        //师生体温异常发展趋势
+        //dvChartData("line",$(".JS_TestChart")[0],"非在校就餐 113 人","", "", saetras);
 
 
         var saetras = [
@@ -234,7 +257,11 @@ function makeListItems(datas){
             "</div>"+
             "</li> ";
     }
-    scroll_li();
+    var parent = $("#watcher");
+    parent.append(strs);
+    setTimeout(function () {
+        scroll_li();
+    },1000);
 }
 
 function scrollAfterAppends()
