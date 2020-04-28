@@ -1,0 +1,348 @@
+<div class="row">
+        <div class="col-8">
+            <div class="row">
+                <div class="col-6">
+                    <!--start data-widget-->
+                    <div class="data-widget container-fluid">
+                        <div class="data-widget-header row">
+                            <div class="col-12 position-relative">
+                                <div class="widget-title">今日数据上报情况</div>
+                                <div class="dorimg"></div>
+                            </div>
+                        </div>
+                        <div class="data-widget-content row ">
+                            <div class="col-12">
+                                <div class="row ">
+                                    <div class="col-4 pr-1 ">
+                                        <!-- start card-widget-->
+                                        <div class="card-widget container-fluid card-num-layout flex-column mt-3 p-0">
+                                            <div class="card-head">数据上报率</div>
+                                            <div class="card-main row flex-fill w-100 mt-4" DataVirtual="dvDataUploadedRate">
+                                            </div>
+                                        </div>
+                                        <!-- end card-widget-->
+                                    </div>
+                                    <div class="col-8  pl-1">
+                                        <!-- start card-widget-->
+                                        <div class="card-widget container-fluid mt-3">
+                                            <div class="card-head">数据综合情况</div>
+                                            <div id="dataUploadedComprehensive" class="card-main row" DataVirtualReady="updateDataUploadedComprehensive()"
+                                            ></div>
+                                        </div>
+                                        <!-- end card-widget-->
+                                    </div>
+
+
+
+                                </div>
+
+
+
+                            </div>
+
+
+                        </div>
+                        <div class="data-widget-footer row">
+                            <div class="top-box">
+                                <div class="top-box-border-left">
+                                    <img src="images/X-line.png">
+                                </div>
+                                <div class="top-box-border-right">
+                                    <div class="arris-edge"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end data-widget-->
+
+                </div>
+                <div class="col-6">
+                    <!--start data-widget-->
+                    <div class="data-widget container-fluid">
+                        <div class="data-widget-header row">
+                            <div class="col-12 position-relative">
+                                <div class="widget-title">数据上报历史
+                                </div>
+                                <div class="dorimg"></div>
+                            </div>
+                        </div>
+                        <div class="data-widget-content full-mode row th2-height-spec" >
+                            <div class="col-12">
+                                <div id="timeline">
+                                    <ul id="dates">
+                                    </ul>
+                                    <ul id="issues">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end data-widget-->
+                </div>
+
+            </div>
+
+
+
+
+            <!--start data-widget-->
+            <div class="data-widget container-fluid mt-1">
+                <div class="data-widget-header row">
+                    <div class="col-12 position-relative">
+                        <div class="widget-title">
+                            测温卡口
+                        </div>
+                        <div class="dorimg"></div>
+                    </div>
+                </div>
+                <div class="data-widget-content row ">
+                    <div class="col-12 mt-3 mb-3">
+                        <div class="row camers">
+                            <div class="col-3">
+                                <div class="camer"><img
+                                        src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel34.jpg"></div>
+                                <div class="w-100 text-center text-light-blue">花园小学-大操场</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="camer"><img
+                                        src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel35.jpg"></div>
+                                <div class="w-100 text-center text-light-blue">花园小学-2号门</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="camer"><img
+                                        src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel42.jpg"></div>
+                                <div class="w-100 text-center text-light-blue">花园小学-走廊A2点</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="camer"><img
+                                        src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel44.jpg"></div>
+                                <div class="w-100 text-center text-light-blue">花园小学-走廊C1点</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="camer"><img
+                                        src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel36.jpg"></div>
+                                <div class="w-100 text-center text-light-blue">花园小学-走廊C2点</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="camer"><img
+                                        src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel37.jpg"></div>
+                                <div class="w-100 text-center text-light-blue">花园小学-3号门</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="camer"><img
+                                        src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel38.jpg"></div>
+                                <div class="w-100 text-center text-light-blue">花园小学-走廊A2点</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="camer"><img
+                                        src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel39.jpg"></div>
+                                <div class="w-100 text-center text-light-blue">花园小学-走廊C1点</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="camer"><img
+                                        src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel40.jpg"></div>
+                                <div class="w-100 text-center text-light-blue">花园小学-大操场</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="camer"><img
+                                        src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel41.jpg"></div>
+                                <div class="w-100 text-center text-light-blue">花园小学-2号门</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="camer"><img
+                                        src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel33.jpg"></div>
+                                <div class="w-100 text-center text-light-blue">花园小学-走廊A2点</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="camer"><img
+                                        src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel46.jpg"></div>
+                                <div class="w-100 text-center text-light-blue">花园小学-走廊C1点</div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="data-widget-footer row">
+                    <div class="top-box">
+                        <div class="top-box-border-left">
+                            <img src="images/X-line.png">
+                        </div>
+                        <div class="top-box-border-right">
+                            <div class="arris-edge"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end data-widget-->
+
+        </div>
+
+        <div class="col-4">
+            <!--start data-widget-->
+            <div class="data-widget container-fluid mt-2">
+                <div class="data-widget-header row">
+                    <div class="col-12 position-relative">
+                        <div class="widget-title">
+                            今日数据上报学校明细
+                        </div>
+                        <div class="dorimg"></div>
+                    </div>
+                </div>
+                <div class="data-widget-content row th4-height">
+                    <table class="table theme4-table">
+                        <thead>
+                        <tr>
+                            <th >序号</th>
+                            <th >学校名称</th>
+                            <th >状态</th>
+                            <th >上报时间</th>
+                        </tr>
+                        </thead>
+                        <tbody id = "reportSchoolList">
+                        <tr>
+                            <td class="prize"><img src="images/01gold.png"></td>
+                            <td>哈尔滨市德强学校</td>
+                            <td>完成</td>
+                            <td>11:27</td>
+                        </tr>
+                        <tr>
+                            <td class="prize"><img src="images/02silver.png"></td>
+                            <td>哈尔滨市第四十六中学校</td>
+                            <td>部分上报</td>
+                            <td>12:37</td>
+                        </tr>
+                        <tr>
+                            <td class="prize"><img src="images/03copper.png"></td>
+                            <td>哈尔滨市第59中学校</td>
+                            <td>部分上报</td>
+                            <td>13:22</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>哈尔滨市第64中学校</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>哈尔滨市第11中学校</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>哈尔滨市第122中学校</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>哈尔滨市第6中学校</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>哈尔滨市第9中学校</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>哈尔滨市朝一中学校</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>哈尔滨市剑桥三中学校</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>哈尔滨市东方红学校</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>哈尔滨市现代应用学校</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>哈尔滨市教育研究院</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>哈尔滨市少年宫</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>15</td>
+                            <td>哈尔滨市招生考试院</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>16</td>
+                            <td>哈尔滨学院</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>17</td>
+                            <td>哈尔滨职业技术学院</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>18</td>
+                            <td>哈尔滨科学技术职业学院</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>19</td>
+                            <td>哈尔滨市卫生学校</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>20</td>
+                            <td>哈尔滨市商业学校</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>哈尔滨轻工业学校</td>
+                            <td>部分上报</td>
+                            <td>14:22</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="data-widget-footer row">
+                    <div class="top-box">
+                        <div class="top-box-border-left">
+                            <img src="images/X-line.png">
+                        </div>
+                        <div class="top-box-border-right">
+                            <div class="arris-edge"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end data-widget-->
+
+        </div>
+    </div>

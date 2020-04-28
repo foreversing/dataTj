@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>香坊教育疫情可视化</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/bs.css">
+    <link rel="stylesheet" href="css/timeline.css">
+
+
+    <script src="js/vue.js"></script>
+    <script src="js/datav.map.vue.js"></script>
+    <script src="js/jquery.slim.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/jquery.timelinr-0.9.53.js"></script>
+
+    <meta charset="UTF-8">
+</head>
+
+<body>
+<div id="app">
+    <dv-full-screen-container>
+
+        <div id="top-header">
+            <dv-decoration-8 class="header-left-decoration"></dv-decoration-8>
+            <dv-decoration-5 class="header-center-decoration"></dv-decoration-5>
+            <dv-decoration-8 class="header-right-decoration" :reverse="true"></dv-decoration-8>
+            <div class="center-title">香坊教育防疫进行时</div>
+        </div>
+
+        <div id="main">
+            <div id="theme-1" class="container-fluid ">
+                <div class="row">
+                    <div id="party-left" class="col-4">
+
+                        <!--start data-widget-->
+
+                        <div class="data-widget container-fluid">
+                            <div class="data-widget-header row">
+                                <div class="col-12 position-relative">
+                                    <div class="widget-title">
+                                    </div>
+                                    <div class="dorimg"></div>
+                                </div>
+                            </div>
+                            <div class="data-widget-content full-mode row th3-height-spec">
+                                <div class="col-6">
+                                    <div class="row h-50 card-style">
+
+                                        <div class="col card-magnetic">
+                                            <div class="row  h-100">
+                                                <div class="col-12 h-100">
+                                                    <div class="data-value-shower">
+                                                        <div class="data-value-title">
+                                                            在籍学生数
+                                                        </div>
+                                                        <div class="data-value" id="registerStuCount">
+                                                            36254<small>人</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-l1"></div>
+                                            <div class="card-l2"></div>
+                                            <div class="card-r1"></div>
+                                            <div class="card-r2"></div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row h-50 card-style">
+                                        <div class="col card-magnetic">
+                                            <div class="row  h-100">
+                                                <div class="col-5 h-100">
+                                                    <div class="data-value-shower">
+                                                        <div class="data-value-title">
+                                                            住校学生
+                                                        </div>
+                                                        <div class="data-value" id="staySchoolStuCount">
+                                                            2156
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-7 h-100">
+                                                    <div class="data-value-shower">
+                                                        <div class="data-value-title">
+                                                            走读学生
+                                                        </div>
+                                                        <div class="data-value" id="goHomeStuCount">
+                                                            5228
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-l1"></div>
+                                            <div class="card-l2"></div>
+                                            <div class="card-r1"></div>
+                                            <div class="card-r2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 card-num-layout" DataVirtual="dvStudentTypeRate">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--start data-widget-->
+                        <div class="data-widget container-fluid">
+                            <div class="data-widget-header row">
+                                <div class="col-12 position-relative">
+                                    <div class="widget-title">传染病疫情</div>
+                                    <div class="dorimg"></div>
+                                </div>
+                            </div>
+                            <div class="data-widget-content row " DataVirtualReady="updateSick()">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-4 pr-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid mt-3 todayRealTime">
+                                                <div class="card-head">总体疫情</div>
+                                                <div id="sickSituation" class="card-main row"></div>
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+                                        <div class="col-4 pr-1 pl-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid mt-3 todayRealTime">
+                                                <div class="card-head">今日学生疫情</div>
+                                                <div id="todyStudentSickSituation" class="card-main row"></div>
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+                                        <div class="col-4 pl-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid mt-3 todayRealTime">
+                                                <div class="card-head">今日教职工疫情</div>
+                                                <div id="todyTeacherSickSituation" class="card-main row"></div>
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div id="divideTrend" class="col-12 mt-2"
+                                             DataVirtual="dvStudentTeacherDivideTrend"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="data-widget-footer row">
+                                <div class="top-box">
+                                    <div class="top-box-border-left">
+                                        <img src="images/X-line.png">
+                                    </div>
+                                    <div class="top-box-border-right">
+                                        <div class="arris-edge"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end data-widget-->
+                    </div>
+                    <div class="col-8">
+                        <!--start data-widget-->
+                        <div class="data-widget container-fluid">
+                            <div class="data-widget-header row">
+                                <div class="col-12 position-relative">
+                                    <div class="widget-title">今日师生出勤</div>
+                                    <div class="dorimg"></div>
+                                </div>
+                            </div>
+                            <div class="data-widget-content row ">
+                                <div class="col-12">
+                                    <div class="row ">
+                                        <div class="col-2 pr-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid card-num-layout flex-column mt-3 p-0 todayRealTime">
+                                                <div class="card-head">学生出勤率</div>
+                                                <div class="card-main row flex-fill w-100 mt-4"
+                                                     DataVirtual="dvStudentAlreadyRate">
+                                                </div>
+
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+
+                                        <div class="col-4 pr-1 pl-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid mt-3 todayRealTime">
+                                                <div class="card-head">学生综合出勤</div>
+                                                <div id="todayAlreadyStudent" class="card-main row"
+                                                     DataVirtualReady="updateTodayAlreadyStudent()"></div>
+
+
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+
+                                        <div class="col-4 pr-1 pl-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid mt-3 todayRealTime">
+                                                <div class="card-head">缺席学生</div>
+                                                <div id="todayAbsentStudent" class="card-main row"
+                                                     DataVirtualReady="updateTodayAbsentStudent()"></div>
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+                                        <div class="col-2 pl-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid card-num-layout flex-column mt-3 p-0 todayRealTime">
+                                                <div class="card-head">学生缺席类别占比</div>
+                                                <div class="card-main row flex-fill w-100 mt-4"
+                                                     DataVirtual="dvTodayStudentAbsentTypeRate">
+                                                </div>
+
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+                                    </div>
+                                    <div class="row  ">
+                                        <div class="col-2 pr-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid card-num-layout flex-column mt-3 p-0 todayRealTime">
+                                                <div class="card-head">教职工出勤率</div>
+                                                <div class="card-main row flex-fill w-100 mt-4"
+                                                     DataVirtual="dvTeacherAlreadyRate">
+                                                </div>
+
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+
+                                        <div class="col-4 pr-1 pl-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid mt-3 todayRealTime">
+                                                <div class="card-head">教职工综合出勤</div>
+                                                <div id="todayAlreadyTeacher" class="card-main row"
+                                                     DataVirtualReady="updateTodayAlreadyTeacher()"></div>
+
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+
+                                        <div class="col-4 pr-1 pl-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid mt-3 todayRealTime">
+                                                <div class="card-head">缺席教职工</div>
+                                                <div id="todayAbsentTeacher" class="card-main row"
+                                                     DataVirtualReady="updateTodayAbsentTeacher()"></div>
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+                                        <div class="col-2 pl-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid card-num-layout flex-column mt-3 p-0 todayRealTime">
+                                                <div class="card-head">教职工缺席类别占比</div>
+                                                <div class="card-main row flex-fill w-100 mt-4"
+                                                     DataVirtual="dvTodayTeacherAbsentTypeRate">
+                                                </div>
+
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="data-widget-footer row">
+                                <div class="top-box">
+                                    <div class="top-box-border-left">
+                                        <img src="images/X-line.png">
+                                    </div>
+                                    <div class="top-box-border-right">
+                                        <div class="arris-edge"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end data-widget-->
+
+                        <div class="container-fluid">
+                            <div class="row">
+
+                                <div class="col-6 pl-0">
+                                    <!--start data-widget-->
+                                    <div class="data-widget container-fluid mt-2">
+                                        <div class="data-widget-header row">
+                                            <div class="col-12 position-relative">
+                                                <div class="widget-title">
+                                                    学生因病缺勤趋势
+                                                </div>
+                                                <div class="dorimg"></div>
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-content row th1-height">
+                                            <div class="col-12" DataVirtual="dvStudentAbsentBySick">
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-footer row">
+                                            <div class="top-box">
+                                                <div class="top-box-border-left">
+                                                    <img src="images/X-line.png">
+                                                </div>
+                                                <div class="top-box-border-right">
+                                                    <div class="arris-edge"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end data-widget-->
+                                </div>
+                                <div class="col-6 pr-0">
+                                    <!--start data-widget-->
+                                    <div class="data-widget container-fluid mt-2">
+                                        <div class="data-widget-header row">
+                                            <div class="col-12 position-relative">
+                                                <div class="widget-title">
+                                                    师生出勤率趋势
+                                                </div>
+                                                <div class="dorimg"></div>
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-content row th1-height">
+                                            <div class="col-12" DataVirtual="dvStudentTeacherAlreadyTrend">
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-footer row">
+                                            <div class="top-box">
+                                                <div class="top-box-border-left">
+                                                    <img src="images/X-line.png">
+                                                </div>
+                                                <div class="top-box-border-right">
+                                                    <div class="arris-edge"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end data-widget-->
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <!--end data-widget-->
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="theme-2" class="container-fluid" hidden>
+                <div class="row">
+
+                    <div class="col-6">
+                        <!--start data-widget-->
+                        <div class="data-widget container-fluid">
+                            <div class="data-widget-header row">
+                                <div class="col-12 position-relative">
+                                    <div class="widget-title">体温监测</div>
+                                    <div class="dorimg"></div>
+                                </div>
+                            </div>
+                            <div class="data-widget-content row ">
+                                <div class="col-12">
+                                    <div class="row ">
+                                        <div class="col-4 pr-1 ">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid mt-3">
+                                                <div class="card-head">体温异常累计</div>
+                                                <div id="historyAbnormalTemperature" class="card-main row"
+                                                     DataVirtualReady="updateHistoryAbnormalTemperature()"></div>
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+
+                                        <div class="col-8  pl-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid mt-3">
+                                                <div class="card-head">今日体温监测</div>
+                                                <div id="todayTemperatureWatch" class="card-main row"
+                                                     DataVirtualReady="updateTodayTemperatureWatch()"></div>
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="data-widget-footer row">
+                                <div class="top-box">
+                                    <div class="top-box-border-left">
+                                        <img src="images/X-line.png">
+                                    </div>
+                                    <div class="top-box-border-right">
+                                        <div class="arris-edge"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end data-widget-->
+
+                        <div class="container-fluid mt-2">
+                            <div class="row">
+                                <div class="col-6 pl-0">
+                                    <!--start data-widget-->
+                                    <div class="data-widget container-fluid">
+                                        <div class="data-widget-header row">
+                                            <div class="col-12 position-relative">
+                                                <div class="widget-title">
+                                                    监测动态
+                                                </div>
+                                                <div class="dorimg"></div>
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-content row th1-height">
+                                            <ul id="watcher" class="list-content">
+                                                <li>
+                                                    <div class="list-flag"></div>
+                                                    <div class="list-textarea">
+                                                        <div class="list-text1"><span>哈尔滨市德强学校</span></div>
+                                                        <div class="list-text2"> 三年二班-张德新 35.8℃（体温正常）</div>
+                                                        <div class="list-text3">04-11 09:16</div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="list-flag"></div>
+                                                    <div class="list-textarea">
+                                                        <div class="list-text1"><span>哈尔滨市德强学校</span></div>
+                                                        <div class="list-text2"> 三年二班-张德新 36.6℃（体温正常）</div>
+                                                        <div class="list-text3">04-11 09:17</div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="list-flag"></div>
+                                                    <div class="list-textarea">
+                                                        <div class="list-text1"><span>哈尔滨市德强学校</span></div>
+                                                        <div class="list-text2"> 三年二班-张德新 36.8℃（体温正常）</div>
+                                                        <div class="list-text3">04-11 09:18</div>
+                                                    </div>
+                                                </li>
+
+
+                                            </ul>
+                                        </div>
+                                        <div class="data-widget-footer row">
+                                            <div class="top-box">
+                                                <div class="top-box-border-left">
+                                                    <img src="images/X-line.png">
+                                                </div>
+                                                <div class="top-box-border-right">
+                                                    <div class="arris-edge"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end data-widget-->
+                                </div>
+
+                                <div class="col-6 pr-0">
+
+
+                                    <!--start data-widget-->
+                                    <div class="data-widget container-fluid">
+                                        <div class="data-widget-header row">
+                                            <div class="col-12 position-relative">
+                                                <div class="widget-title">
+                                                    师生体温异常发展趋势
+                                                </div>
+                                                <div class="dorimg"></div>
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-content row th3-height">
+                                            <div class="col-12" DataVirtual="dvStudentTeacherAbnormalTemperatureTrend">
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-footer row">
+                                            <div class="top-box">
+                                                <div class="top-box-border-left">
+                                                    <img src="images/X-line.png">
+                                                </div>
+                                                <div class="top-box-border-right">
+                                                    <div class="arris-edge"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end data-widget-->
+
+                                    <!--start data-widget-->
+                                    <div class="data-widget container-fluid mt-2">
+                                        <div class="data-widget-header row">
+                                            <div class="col-12 position-relative">
+                                                <div class="widget-title">
+                                                    学生就餐情况
+                                                </div>
+                                                <div class="dorimg"></div>
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-content row th3-height">
+                                            <div class="col-12">
+                                                <div class="row h-100">
+                                                    <div class="col-5 card-num-layout" DataVirtual="dvStudentLunch"
+                                                         DataVirtualDone="makeStudentLunchLegend()">
+                                                    </div>
+                                                    <div class="col-7 pl-0 pr-1">
+                                                        <div id="studentLunch" class="d-table h-100 w-100">
+                                                            <div id="nok_nothing" class="d-table-row">
+                                                                <div class="d-table-cell"></div>
+                                                                <div class="d-table-cell"></div>
+                                                                <div class="d-table-cell dth"></div>
+                                                                <div class="d-table-cell dtrend"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-footer row">
+                                            <div class="top-box">
+                                                <div class="top-box-border-left">
+                                                    <img src="images/X-line.png">
+                                                </div>
+                                                <div class="top-box-border-right">
+                                                    <div class="arris-edge"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end data-widget-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-fluid mt-2">
+                            <div class="row">
+                                <div class="col-6 pl-0">
+                                    <div class="data-widget container-fluid mt-2">
+                                        <div class="data-widget-header row">
+                                            <div class="col-12 position-relative">
+                                                <div class="widget-title">
+                                                    学生出行可视化
+                                                </div>
+                                                <div class="dorimg"></div>
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-content row th3-height">
+                                            <div class="col-12">
+                                                <div class="row h-100">
+                                                    <div class="col-5 card-num-layout"
+                                                         DataVirtual="dvStudentTransportType"
+                                                         DataVirtualDone="makeStudentTransportTypeLegend()">
+                                                    </div>
+                                                    <div class="col-7 pl-0 pr-1">
+                                                        <div id="studentTransportType" class="d-table h-100 w-100">
+                                                            <div id="nok_nothing1" class="d-table-row">
+                                                                <div class="d-table-cell"></div>
+                                                                <div class="d-table-cell"></div>
+                                                                <div class="d-table-cell dth"></div>
+                                                                <div class="d-table-cell dtrend"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-footer row">
+                                            <div class="top-box">
+                                                <div class="top-box-border-left">
+                                                    <img src="images/X-line.png">
+                                                </div>
+                                                <div class="top-box-border-right">
+                                                    <div class="arris-edge"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6 pr-0">
+
+
+                                    <!--start data-widget-->
+                                    <div class="data-widget container-fluid mt-2">
+                                        <div class="data-widget-header row">
+                                            <div class="col-12 position-relative">
+                                                <div class="widget-title">
+                                                    教职工出行可视化
+                                                </div>
+                                                <div class="dorimg"></div>
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-content row th3-height">
+                                            <div class="col-12">
+                                                <div class="row h-100">
+                                                    <div class="col-5 card-num-layout"
+                                                         DataVirtual="dvTeacherTransportType"
+                                                         DataVirtualDone="makeTeacherTransportTypeLegend()">
+                                                    </div>
+                                                    <div class="col-7 pl-0 pr-1">
+                                                        <div id="teacherTransportType" class="d-table h-100 w-100">
+                                                            <div id="nok_nothing2" class="d-table-row">
+                                                                <div class="d-table-cell"></div>
+                                                                <div class="d-table-cell"></div>
+                                                                <div class="d-table-cell dth"></div>
+                                                                <div class="d-table-cell dtrend"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="data-widget-footer row">
+                                            <div class="top-box">
+                                                <div class="top-box-border-left">
+                                                    <img src="images/X-line.png">
+                                                </div>
+                                                <div class="top-box-border-right">
+                                                    <div class="arris-edge"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end data-widget-->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        <!--start data-widget-->
+                        <div class="data-widget container-fluid">
+                            <div class="data-widget-header row">
+                                <div class="col-12 position-relative">
+                                    <div class="widget-title">复学综合情况</div>
+                                    <div class="dorimg"></div>
+                                </div>
+                            </div>
+                            <div class="data-widget-content row ">
+                                <div class="col-12">
+                                    <div class="row ">
+
+                                        <div class="col-4  pr-1">
+                                            <!-- start card-widget-->
+                                            <div class="card-widget container-fluid mt-3">
+                                                <div class="card-head">全面复工复学</div>
+                                                <div id="recoveryStudentTeacher" class="card-main row"
+                                                     DataVirtualReady="updateRecoveryStudentTeacher()"></div>
+                                            </div>
+                                            <!-- end card-widget-->
+                                        </div>
+
+                                        <div class="col-8 pr-1 " DataVirtual="dvIncreaseDivideRecoveryTrend"></div>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="data-widget-footer row">
+                                <div class="top-box">
+                                    <div class="top-box-border-left">
+                                        <img src="images/X-line.png">
+                                    </div>
+                                    <div class="top-box-border-right">
+                                        <div class="arris-edge"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end data-widget-->
+                        <!--start data-widget-->
+                        <div id="recorySchoolDetail" class="data-widget container-fluid">
+                            <div class="data-widget-header row">
+                                <div class="col-12 position-relative">
+                                    <div class="widget-title"></div>
+                                    <div class="dorimg"></div>
+                                </div>
+                            </div>
+                            <div class="data-widget-content row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <ul class="list-content">
+                                            <li>
+                                                <div class="col-2 card-magnetic">
+                                                    <div class="row  h-100">
+                                                        <div class="col-12 h-100">
+                                                            <div class="data-value-shower">
+                                                                <div class="data-value-title">
+                                                                    小学
+                                                                </div>
+                                                                <div class="data-value" id="primary_school">
+                                                                    0<small>所</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card-l1"></div>
+                                                    <div class="card-l2"></div>
+                                                    <div class="card-r1"></div>
+                                                    <div class="card-r2"></div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="JS_Scroll_H">
+                                                        <div class="row h-100 pr-1 mr-1" id="primary_school_list">
+                                                            <div class="col-12 hhText">尚未复学</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="col-2 card-magnetic">
+                                                    <div class="row  h-100">
+                                                        <div class="col-12 h-100">
+                                                            <div class="data-value-shower">
+                                                                <div class="data-value-title">
+                                                                    初中
+                                                                </div>
+                                                                <div class="data-value" id="junior_school">
+                                                                    0<small>所</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card-l1"></div>
+                                                    <div class="card-l2"></div>
+                                                    <div class="card-r1"></div>
+                                                    <div class="card-r2"></div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="JS_Scroll_H">
+                                                        <div class="row h-100 pr-1 mr-1" id="junior_school_list">
+                                                            <div class="col-12 hhText">尚未复学</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="col-2 card-magnetic">
+                                                    <div class="row  h-100">
+                                                        <div class="col-12 h-100">
+                                                            <div class="data-value-shower">
+                                                                <div class="data-value-title">
+                                                                    高中
+                                                                </div>
+                                                                <div class="data-value" id="senior_school">
+                                                                    12<small>所</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card-l1"></div>
+                                                    <div class="card-l2"></div>
+                                                    <div class="card-r1"></div>
+                                                    <div class="card-r2"></div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="JS_Scroll_H">
+                                                        <div class="row h-100 pr-1 mr-1" id="senior_school_list">
+                                                            <div class="col-4 gText">第一个</div>
+                                                            <div class="col-4 gText">哈尔滨市第59中学校</div>
+                                                            <div class="col-4 gText">哈尔滨市第46中学校</div>
+                                                            <div class="col-4 gText">哈尔滨市第64中学校</div>
+                                                            <div class="col-4 gText">哈尔滨市第11中学校</div>
+                                                            <div class="col-4 gText">哈尔滨市第122中学校</div>
+                                                            <div class="col-4 gText">哈尔滨市剑桥三中学校</div>
+                                                            <div class="col-4 gText">哈尔滨市第东方红学校</div>
+                                                            <div class="col-4 gText">哈尔滨市现代应用学校</div>
+                                                            <div class="col-4 gText">哈尔滨市第6中学校</div>
+                                                            <div class="col-4 gText">哈尔滨市第9中学校</div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="col-2 card-magnetic">
+                                                    <div class="row  h-100">
+                                                        <div class="col-12 h-100">
+                                                            <div class="data-value-shower">
+                                                                <div class="data-value-title">
+                                                                    大学
+                                                                </div>
+                                                                <div class="data-value">
+                                                                    0<small>所</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card-l1"></div>
+                                                    <div class="card-l2"></div>
+                                                    <div class="card-r1"></div>
+                                                    <div class="card-r2"></div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="JS_Scroll_H">
+                                                        <div class="row h-100 pr-1 mr-1">
+                                                            <div class="col-12 hhText">尚未复学</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="data-widget-footer row">
+                                <div class="top-box">
+                                    <div class="top-box-border-left">
+                                        <img src="images/X-line.png">
+                                    </div>
+                                    <div class="top-box-border-right">
+                                        <div class="arris-edge"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end data-widget-->
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="theme-3" class="container-fluid" hidden>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-6">
+                                <!--start data-widget-->
+                                <div class="data-widget container-fluid">
+                                    <div class="data-widget-header row">
+                                        <div class="col-12 position-relative">
+                                            <div class="widget-title">今日数据上报情况</div>
+                                            <div class="dorimg"></div>
+                                        </div>
+                                    </div>
+                                    <div class="data-widget-content row ">
+                                        <div class="col-12">
+                                            <div class="row ">
+                                                <div class="col-4 pr-1 ">
+                                                    <!-- start card-widget-->
+                                                    <div class="card-widget container-fluid card-num-layout flex-column mt-3 p-0">
+                                                        <div class="card-head">数据上报率</div>
+                                                        <div class="card-main row flex-fill w-100 mt-4"
+                                                             DataVirtual="dvDataUploadedRate">
+                                                        </div>
+                                                    </div>
+                                                    <!-- end card-widget-->
+                                                </div>
+                                                <div class="col-8  pl-1">
+                                                    <!-- start card-widget-->
+                                                    <div class="card-widget container-fluid mt-3">
+                                                        <div class="card-head">数据综合情况</div>
+                                                        <div id="dataUploadedComprehensive" class="card-main row"
+                                                             DataVirtualReady="updateDataUploadedComprehensive()"
+                                                        ></div>
+                                                    </div>
+                                                    <!-- end card-widget-->
+                                                </div>
+
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="data-widget-footer row">
+                                        <div class="top-box">
+                                            <div class="top-box-border-left">
+                                                <img src="images/X-line.png">
+                                            </div>
+                                            <div class="top-box-border-right">
+                                                <div class="arris-edge"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end data-widget-->
+
+                            </div>
+                            <div class="col-6">
+                                <!--start data-widget-->
+                                <div class="data-widget container-fluid">
+                                    <div class="data-widget-header row">
+                                        <div class="col-12 position-relative">
+                                            <div class="widget-title">数据上报历史
+                                            </div>
+                                            <div class="dorimg"></div>
+                                        </div>
+                                    </div>
+                                    <div class="data-widget-content full-mode row th2-height-spec"
+                                         DataVirtualReady="makeTimeLine()">
+                                        <div class="col-12">
+                                            <div id="timeline">
+                                                <ul id="dates">
+                                                </ul>
+                                                <ul id="issues">
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end data-widget-->
+                            </div>
+
+                        </div>
+
+
+                        <!--start data-widget-->
+                        <div class="data-widget container-fluid mt-1">
+                            <div class="data-widget-header row">
+                                <div class="col-12 position-relative">
+                                    <div class="widget-title">
+                                        测温卡口
+                                    </div>
+                                    <div class="dorimg"></div>
+                                </div>
+                            </div>
+                            <div class="data-widget-content row ">
+                                <div class="col-12 mt-3 mb-3">
+                                    <div class="row camers">
+                                        <div class="col-3">
+                                            <div class="camer"><img
+                                                    src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel34.jpg">
+                                            </div>
+                                            <div class="w-100 text-center text-light-blue">花园小学-大操场</div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="camer"><img
+                                                    src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel35.jpg">
+                                            </div>
+                                            <div class="w-100 text-center text-light-blue">花园小学-2号门</div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="camer"><img
+                                                    src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel42.jpg">
+                                            </div>
+                                            <div class="w-100 text-center text-light-blue">花园小学-走廊A2点</div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="camer"><img
+                                                    src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel44.jpg">
+                                            </div>
+                                            <div class="w-100 text-center text-light-blue">花园小学-走廊C1点</div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="camer"><img
+                                                    src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel36.jpg">
+                                            </div>
+                                            <div class="w-100 text-center text-light-blue">花园小学-走廊C2点</div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="camer"><img
+                                                    src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel37.jpg">
+                                            </div>
+                                            <div class="w-100 text-center text-light-blue">花园小学-3号门</div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="camer"><img
+                                                    src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel38.jpg">
+                                            </div>
+                                            <div class="w-100 text-center text-light-blue">花园小学-走廊A2点</div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="camer"><img
+                                                    src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel39.jpg">
+                                            </div>
+                                            <div class="w-100 text-center text-light-blue">花园小学-走廊C1点</div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="camer"><img
+                                                    src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel40.jpg">
+                                            </div>
+                                            <div class="w-100 text-center text-light-blue">花园小学-大操场</div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="camer"><img
+                                                    src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel41.jpg">
+                                            </div>
+                                            <div class="w-100 text-center text-light-blue">花园小学-2号门</div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="camer"><img
+                                                    src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel33.jpg">
+                                            </div>
+                                            <div class="w-100 text-center text-light-blue">花园小学-走廊A2点</div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div class="camer"><img
+                                                    src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel46.jpg">
+                                            </div>
+                                            <div class="w-100 text-center text-light-blue">花园小学-走廊C1点</div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="data-widget-footer row">
+                                <div class="top-box">
+                                    <div class="top-box-border-left">
+                                        <img src="images/X-line.png">
+                                    </div>
+                                    <div class="top-box-border-right">
+                                        <div class="arris-edge"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end data-widget-->
+
+                    </div>
+
+                    <div class="col-4">
+                        <!--start data-widget-->
+                        <div class="data-widget container-fluid mt-2">
+                            <div class="data-widget-header row">
+                                <div class="col-12 position-relative">
+                                    <div class="widget-title">
+                                        今日数据上报学校明细
+                                    </div>
+                                    <div class="dorimg"></div>
+                                </div>
+                            </div>
+                            <div class="data-widget-content row th4-height">
+                                <table class="table theme4-table">
+                                    <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>学校名称</th>
+                                        <th>状态</th>
+                                        <th>上报时间</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="reportSchoolList">
+                                    <tr>
+                                        <td class="prize"><img src="images/01gold.png"></td>
+                                        <td>哈尔滨市德强学校</td>
+                                        <td>完成</td>
+                                        <td>11:27</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="prize"><img src="images/02silver.png"></td>
+                                        <td>哈尔滨市第四十六中学校</td>
+                                        <td>部分上报</td>
+                                        <td>12:37</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="prize"><img src="images/03copper.png"></td>
+                                        <td>哈尔滨市第59中学校</td>
+                                        <td>部分上报</td>
+                                        <td>13:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>哈尔滨市第64中学校</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>哈尔滨市第11中学校</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>哈尔滨市第122中学校</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>哈尔滨市第6中学校</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>哈尔滨市第9中学校</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>哈尔滨市朝一中学校</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>哈尔滨市剑桥三中学校</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>11</td>
+                                        <td>哈尔滨市东方红学校</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12</td>
+                                        <td>哈尔滨市现代应用学校</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>13</td>
+                                        <td>哈尔滨市教育研究院</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>14</td>
+                                        <td>哈尔滨市少年宫</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15</td>
+                                        <td>哈尔滨市招生考试院</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>16</td>
+                                        <td>哈尔滨学院</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>17</td>
+                                        <td>哈尔滨职业技术学院</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>18</td>
+                                        <td>哈尔滨科学技术职业学院</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>19</td>
+                                        <td>哈尔滨市卫生学校</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>20</td>
+                                        <td>哈尔滨市商业学校</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+                                    <tr>
+                                        <td>21</td>
+                                        <td>哈尔滨轻工业学校</td>
+                                        <td>部分上报</td>
+                                        <td>14:22</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="data-widget-footer row">
+                                <div class="top-box">
+                                    <div class="top-box-border-left">
+                                        <img src="images/X-line.png">
+                                    </div>
+                                    <div class="top-box-border-right">
+                                        <div class="arris-edge"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end data-widget-->
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="map">
+            <div class="map1"></div>
+            <div class="map2"></div>
+
+        </div>
+
+
+        <footer class="container-fluid fixed-bottom mb-4">
+            <div class="row">
+                <div class="col-3 schoolname">香坊区教育局
+                </div>
+                <div class="col-6 text-center">
+                    <ul>
+                        <li class="dorleft"></li>
+                        <li class="dorcenter">
+                            <div id="theme-link-1" class="theme-name active" onclick="goto(1)">疫情出勤</div>
+                            <div class="theme-dor-line"></div>
+                            <div id="theme-link-2" class="theme-name" onclick="goto(2)">复学监测</div>
+                            <div class="theme-dor-line"></div>
+                            <div id="theme-link-3" class="theme-name " onclick="goto(3)">数据上报</div>
+
+                        </li>
+                        <li class="dorright"></li>
+
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <img src="images/logo.png" class="comlogo float-right">
+                </div>
+            </div>
+        </footer>
+
+        <div class="canvas">
+            <iframe frameborder="0" src="bg/bg.html" style="width: 100%; height: 100%"></iframe>
+        </div>
+    </dv-full-screen-container>
+</div>
+
+
+<script src="js/echarts.min.js"></script>
+<script src="js/echarts-liquidfill.min.js"></script>
+<script src="js/dvnew.js"></script>
+<script src="js/bs.js"></script>
+<script src="js/data.js"></script>
+<script src="js/data2.js"></script>
+<script src="js/data3.js"></script>
+
+</body>
+
+</html>
