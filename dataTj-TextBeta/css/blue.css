@@ -1,0 +1,12 @@
+body {
+    background: blue;
+}
+
+ul#styles{margin-top:10px}
+ul#styles li{float:left; width:50px; height:40px; line-height:40px; padding:2px;
+    margin-left:10px; border:1px solid #fff; text-align:center; color:#fff; cursor:pointer}
+ul#styles li.cur{border:1px solid #369; background-image:url(images/selected.gif);
+    background-repeat:no-repeat; background-position:4px 32px}
+ul#styles li#default{background-color:#162934;}
+ul#styles li#blue{background-color:#90c5e7}
+ul#styles li#brown{background-color:#601f00}

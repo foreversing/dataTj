@@ -133,7 +133,6 @@ function throughTheData_Line(datas) {
     }
     return dataLine;
 }
-
 //折线图
 function dvLineChart() {
     var option = {
@@ -787,17 +786,6 @@ function dvWaterPoloChart(datas) {
 //饼图+折线图
 function dvPieAndLineChart_pie() {
     var option = {
-        title: {
-            text: '',
-            textStyle: {
-                color: '#fff',
-                fontSize: 14,
-                lineHeight: 21
-            },
-
-            bottom: -8,
-            x: 'center'
-        },
         tooltip: {
             trigger: 'item',
             formatter: '{b}：{c}<br/>({d}%)'
@@ -806,8 +794,8 @@ function dvPieAndLineChart_pie() {
         series: [{
             name: '',
             type: 'pie',
-            center: ['50%', '48%'],
-            radius: "70%",
+            center: ['50%', '52%'],
+            radius: "85%",
             avoidLabelOverlap: false,
             label: {
                 show: false
@@ -830,15 +818,15 @@ function dvPieAndLineChart_line(dom, domProp, options, datas) {
             "<div class='d-table-cell'><div class='rect' style='background-color:" + (color ? color : "red") + "'></div></div>" +
             "<div class='d-table-cell'>" + obj.name + "</div>" +
             "<div class='d-table-cell dth'>" + obj.value + "</div>" +
-            "<div class='d-table-cell rowDtrend' style='width: 123px; height: 29px;' id='" + ids + "'></div>" +
+            "<div class='d-table-cell rowDtrend' style='width: 130px; height: 29px;' id='" + ids + "'></div>" +
             "</div>";
 
         $(dom).next().children().append(str);
         var optionLine = {
             grid: {
                 top: '3',
-                left: '-8',
-                right: '-8',
+                left: '4',
+                right: '4',
                 bottom: '4'
             },
             xAxis: {

@@ -179,16 +179,38 @@ function initThemeDataVirtual(){
         //师生体温异常发展趋势
         dvChartData("line",$(".JS_StudentTeacherAbnormalTemperatureTrend")[0],"","", studentTeacherAbnormalTemperatureTrendDatas, studentTeacherAbnormalTemperatureTrendDatas);
 
-
-
-        var saetras = [
-            {value: 3658, name: "自带午饭", trend: [3648, 3636, 3640, 3648, 3636, 3640]},
-            {value: 3713, name: "订餐", trend: [3723, 3735, 3731, 3723, 3735, 3731]},
+        var studentLunchDatas = [
+            {name: "自带午饭", value: 3658, trend: [3648, 3636, 3640, 3648, 3636, 3640], otherCount: 100},
+            {name: "订餐", value: 3713, trend: [3723, 3735, 3731, 3723, 3735, 3731], otherCount: 165},
 
         ];
-        dvChartData("pieAndLine",$(".JS_TestChart")[0],"非在校就餐 113 人","", "", saetras);
+        var studentLunchTitle;
+        for (var items in studentLunchDatas){
+            var obj = studentLunchDatas[items];
+            if (obj.name === "订餐"){
+                studentLunchTitle = obj.otherCount;
+            }
+        }
+        //学生就餐情况
+        dvChartData("pieAndLine",$(".JS_StudentLunch")[0],"非在校就餐 " + studentLunchTitle + " 人","", "", studentLunchDatas);
 
+        var studentTransportTypeDatas = [
+            {name: "私家车", value: 2568, trend: [33, 44, 35, 35, 35, 37]},
+            {name: "步行", value: 1662, trend: [44, 32, 43, 21, 3, 21]},
+            {name: "公交出行", value: 3254, trend: [44, 32, 43, 21, 3, 21]}
 
+        ];
+        //学生出行可视化
+        dvChartData("pieAndLine",$(".JS_StudentTransportType")[0],"","", "", studentTransportTypeDatas);
+
+        var teacherTransportTypeDatas = [
+            {name: "私家车", value: 24, trend: [31, 11, 21, 35, 35, 37]},
+            {name: "步行", value: 9, trend: [41, 32, 76, 21, 63, 21]},
+            {name: "公交出行", value: 35, trend: [41, 23, 49, 21, 13, 21]}
+
+        ];
+        //教职工出行可视化
+        dvChartData("pieAndLine",$(".JS_TeacherTransportType")[0],"","", "", teacherTransportTypeDatas);
         /**
          * 复学综合情况
          * */
@@ -201,10 +223,10 @@ function initThemeDataVirtual(){
         dvSummaryInfo($(".JS_RecoveryStudentTeacher"),recoveryStudentTeacherDatas);
 
         var increaseDivideRecoveryTrendDatas = [
-            {   name: '新增隔离教职工',value: [2, 3, 1, 1, 2, 2, 1, 3, 4, 2, 1, 2], xAxis:["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
-            {   name: '新增隔离学生', value: [5, 6, 4, 4, 5, 7, 6, 3, 5, 4, 2, 3], xAxis:["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
-            {   name: '新增复学学生', value: [110, 112, 121, 154, 198, 170, 124, 165, 175, 182, 192, 222], xAxis:["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
-            {   name: '新增复工教职工', value: [20, 30, 25, 38, 45, 56, 20, 35, 36, 27, 35, 65], xAxis:["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]}
+            {name: '新增隔离教职工',value: [2, 3, 1, 1, 2, 2, 1, 3, 4, 2, 1, 2], xAxis:["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
+            {name: '新增隔离学生', value: [5, 6, 4, 4, 5, 7, 6, 3, 5, 4, 2, 3], xAxis:["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
+            {name: '新增复学学生', value: [110, 112, 121, 154, 198, 170, 124, 165, 175, 182, 192, 222], xAxis:["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
+            {name: '新增复工教职工', value: [20, 30, 25, 38, 45, 56, 20, 35, 36, 27, 35, 65], xAxis:["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]}
 
         ];
         //复学-折线图dvIncreaseDivideRecoveryTrend
@@ -261,7 +283,7 @@ function initThemeDataVirtual(){
             {schName:"哈尔滨市第九中学",status:"未上报",reportTime:"","sort":3}
         ]
         //列表信息
-        dvInfoList($("#reportSchoolList"),reportSchoolListDatas);
+        dvInfoList($(".JS_ReportSchoolList"),reportSchoolListDatas);
     }
 }
 
@@ -304,7 +326,7 @@ function gotos(themeid)
 
 
 
-var charts_JSON = [];
+
 function jsonForArray(objJson,property){
     var array=[];
     for(var item in objJson){

@@ -97,7 +97,7 @@ function dvChartData(flag, dom, title, legend, xAxis, data) {
         //该标签应用自定义属性
         options = dvPieAndLineChart_pie();
         //饼图标题
-        options.title.text = title;
+        //options.title.text = title;
         //饼图数据
         options.series[0].name = "学生就餐类别统计";
         options.series[0].data = data;
@@ -156,11 +156,11 @@ function dvSpecialItems($dom, data) {
     for (var it in data) {
         var obj = data[it];
         str += "<div class='col-md sportItem' style='min-width: 0'>" +
-            "<div class='sportItemLegend'>" +
-            "<img src='" + obj.img + "'>" +
-            "</div>" +
-            "<div class='imageTextDetail'>" + obj.name + "</div>" +
-            "</div>";
+                "<div class='sportItemLegend'>" +
+                "<img src='" + obj.img + "'>" +
+                "</div>" +
+                "<div class='imageTextDetail'>" + obj.name + "</div>" +
+                "</div>";
     }
     $dom.append(str);
 }
@@ -173,7 +173,7 @@ function dvSpecialItems($dom, data) {
  *      滚动内容为添加class的div中的内容
  *      有父节点，子节点为滚动内容
  * */
-function scroll_Height() {
+function dvScroll_Height() {
     $(".JS_Scroll_H").each(function (i, el) {
         var li = $(this).parent();
         var li_h = $(li).height();
@@ -198,14 +198,35 @@ function scroll_Height() {
  * makeListItem为每次新增的数据
  * 获取数据后调用该方法 data.length > 3
  * */
-function scroll_li(){
+//数据刷新效果
+function dvMakeListItems(datas){
+    var strs = "";
+    for (var it in datas) {
+        strs += "<li>"+
+            "<div class='list-flag'></div>"+
+            "<div class='list-textarea'>"+
+            "<div class='list-text1'>"+datas[it].schoolname+"</div>"+
+            "<div class='list-text2'>"+"  "+datas[it].classname+"-"+datas[it].name+" "+datas[it].temp+"℃（体温正常）"+"</div>"+
+            "<div class='list-text3'>"+datas[it].time+"</div>"+
+            "</div>"+
+            "</li> ";
+    }
+    var parent = $("#watcher");
+    parent.children().remove();
+    parent.append(strs);
+    setTimeout(function () {
+        dvScroll_li();
+    },1000);
+}
+
+function dvScroll_li(){
     scrollAfterAppends();
     increase("today_quality");
     increase("today_shape");
     increase("total_quality");
     increase("total_shape");
     var randomTime=randomNums(1000,10000);
-    setTimeout(scroll_li,randomTime);
+    setTimeout(dvScroll_li,randomTime);
 }
 
 /**
@@ -220,7 +241,7 @@ function scroll_li(){
  *  </ul>
  * </div>
  * */
-function makeTimeLine($dom,data) {
+function dvMakeTimeLine($dom,data) {
     var dateStr = "";
     var issueStr = "";
     var i = 0;
@@ -240,4 +261,49 @@ function makeTimeLine($dom,data) {
         startAt: 1,
         autoPlayPause: 10000
     })
+}
+
+/**
+ * 画上报列表信息
+ * */
+function dvInfoList($dom,data){
+    $dom.empty();
+    for (let i = 0; i < data.length; i++) {
+        var img;
+        if (i == 0) {
+            img = "images/01gold.png";
+        }
+        if (i == 1) {
+            img = "images/02silver.png";
+        }
+        if (i == 2) {
+            img = "images/03copper.png";
+        }
+        var str = "<tr>";
+        if (i > 2) {
+            str += "<td>" + (i + 1) + "</td>";
+        } else {
+            str += "<td class='prize'><img src='" + img + "'></td>";
+        }
+        str += "<td>" + data[i].schName + "</td>" +
+               "<td>" + data[i].status + "</td>" +
+               "<td>" + data[i].reportTime + "</td>" +
+               "</tr>";
+        $dom.append(str);
+    }
+}
+
+/**
+ * echart 刷新方法
+ * */
+//切换页面时 echart刷新方法 -- 有问题 待更新 dom对象存入失败
+function resetCharts(){
+    for(var item in charts_JSON){
+        var obj = charts_JSON[item].obj;
+        var opt = charts_JSON[item].opt;
+        obj = JSON.parse(obj);
+        var chartobj = echarts.init(obj);
+        chartobj.setOption(opt);
+        chartobj.resize()
+    }
 }
