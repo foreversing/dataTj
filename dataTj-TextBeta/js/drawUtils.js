@@ -1,15 +1,9 @@
 
 //页面初始化
 function initThemeDataVirtual(){
+	dynamicState();
+	
     if (current == 1){
-        var solidData = [
-            {name: '走读学生', value: 5288, selected: true},
-            {name: '住宿学生', value: 2156, selected: false}
-
-        ];
-        //走读/住宿学生占比
-        dvChartData("solid",$(".JS_SolidPie")[0],"➤  走读/住宿学生占比", jsonForArray(solidData,"name"), "", solidData);
-
         /**
          * 今日师生出勤
          * */
@@ -123,7 +117,7 @@ function initThemeDataVirtual(){
             {name: '', value: [14, 9, 12, 14, 11, 9, 6, 8, 7, 6, 5, 4], xAxis: ["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]}
 
         ];
-        dvChartData("area",$(".JS_StudentAbsentBySick")[0],"师生传染病发展趋势","", studentAbsentBySickDatas, studentAbsentBySickDatas);
+        dvChartData("area",$(".JS_StudentAbsentBySick")[0],"","", studentAbsentBySickDatas, studentAbsentBySickDatas);
 
 
         /**
@@ -281,13 +275,90 @@ function initThemeDataVirtual(){
             {schName:"哈尔滨德强学校",status:"未上报",reportTime:"","sort":3},
             {schName:"哈尔滨市第五十九中学校",status:"未上报",reportTime:"","sort":3},
             {schName:"哈尔滨市第九中学",status:"未上报",reportTime:"","sort":3}
-        ]
+        ];
         //列表信息
         dvInfoList($(".JS_ReportSchoolList"),reportSchoolListDatas);
     }
 }
 
+//获取页面动态部分
+/**
+ * read me
+ * 注意事项：
+ * 1.接口数据格式
+ * 2.obj的值与html中DataVirtual属性的值匹配
+ * 3.返回数据中title可已为空
+ * */
+function dynamicState(){
+    //ajax 返回数据
+    var jsonList = [
+        {obj:"dvStudentTypeRate", type:"solid", title:"➤  走读/住宿学生占比", val: [{name: '走读学生', value: 5288, selected: true}, {name: '住宿学生', value: 2156, selected: false}]},
+    ];
+    //获取所有动态填充div
+    $("#theme-" + current + " [DataVirtual]").each(function (i, el) {
+        var options = $(el).attr("DataVirtual");
+        if (options != null) {
+			if(jsonList != null && jsonList.length > 0){
+				for(var it in jsonList) {
+					var item = jsonList[it];
+					if(item.obj == options) {
+						if(item.type != null) {
+							//表明获取的数据和页面div匹配
+							dvChartData(item.type, el, item.title, item.val, item.val, item.val);
+						}else {
+							console.error("接口返回的Type为Null，请联系管理员！！！");
+						}
+					}else {
+							console.error("接口返回的Obj和DataVirtual没有完全匹配上，请联系管理员！！！");
+					}
+				}
+			}else { 
+				console.error("接口返回的值为Null，请联系管理员！！！");
+			}
+        }
+    });
+}
 
+/**
+ * 基本数据统计
+ */
+function baseDataView() {
+
+    $.ajax({
+        url: reqUrl + "basedaocontroller/statisticbasedate",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        data: {},
+        dataType: "json",
+        success: function (data) {
+            // 在籍学生数
+            var registerStuCount = data.data.registerStuCount;
+            regStuCount = registerStuCount;
+            // 住校学生
+            var staySchoolStuCount = data.data.staySchoolStuCount;
+            // 走读学生
+            var goHomeStuCount = data.data.goHomeStuCount;
+
+
+            $("#registerStuCount").empty();
+            $("#registerStuCount").html(registerStuCount + "<small>人</small>");
+
+            $("#staySchoolStuCount").empty();
+            $("#staySchoolStuCount").text(staySchoolStuCount);
+
+            $("#goHomeStuCount").empty();
+            $("#goHomeStuCount").text(goHomeStuCount);
+
+
+            studentTypeRate[0].value = goHomeStuCount;
+            studentTypeRate[1].value = staySchoolStuCount;
+
+        },
+        error: function (e) {
+        }
+    });
+
+}
 
 function dealThemes(){
     var w=-1;

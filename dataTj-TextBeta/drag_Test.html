@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/default.css">
+    <link href="https://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/bs.css">
+    <link rel="stylesheet" href="css/timeline.css">
+
+
+</head>
+<body>
+<div id="app">
+        <dv-full-screen-container>
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <h2>Custom Icons</h2>
+                    <div id="treeview5" class=""></div>
+                </div>
+                <div class="col-md-10">
+                    <div class="row" style="height: 116px">
+                        <div class="col-md-12">col-md-12</div>
+                    </div>
+                    <div class="row" style="height: 864px; overflow: auto;">
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                        <div class="col-md-4" style="height: 288px">col-md-4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dv-full-screen-container>
+</div>
+
+
+<script src="js/vue.js"></script>
+<script src="js/datav.map.vue.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-treeview.js"></script>
+<script src="js/modernizr.custom.js"></script>
+<script src="js/jquery.timelinr-0.9.53.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/echarts-liquidfill.min.js"></script>
+<script src="js/drawUtils.js"></script>
+<script src="js/drawEcharts.js"></script>
+<script src="js/drawEchartsData.js"></script>
+
+<script type="text/javascript">
+    var app = new Vue({
+        el: '#app'
+    })
+    $(function(){
+        var defaultData = [
+            {
+                text: 'Parent 1',
+                href: '#parent1',
+                tags: ['4'],
+                nodes: [
+                    {
+                        text: 'Child 1',
+                        href: '#child1',
+                        tags: ['2'],
+                        nodes: [
+                            {
+                                text: 'Grandchild 1',
+                                href: '#grandchild1',
+                                tags: ['0']
+                            },
+                            {
+                                text: 'Grandchild 2',
+                                href: '#grandchild2',
+                                tags: ['0']
+                            }
+                        ]
+                    },
+                    {
+                        text: 'Child 2',
+                        href: '#child2',
+                        tags: ['0']
+                    }
+                ]
+            },
+            {
+                text: 'Parent 2',
+                href: '#parent2',
+                tags: ['0']
+            },
+            {
+                text: 'Parent 3',
+                href: '#parent3',
+                tags: ['0']
+            },
+            {
+                text: 'Parent 4',
+                href: '#parent4',
+                tags: ['0']
+            },
+            {
+                text: 'Parent 5',
+                href: '#parent5'  ,
+                tags: ['0']
+            }
+        ];
+
+
+        $('#treeview5').treeview({
+            backColor: "",
+            color: "#428bca",
+            backColor: "#031330",
+            borderColor: "#031330",
+            expandIcon: 'glyphicon glyphicon-chevron-right',
+            collapseIcon: 'glyphicon glyphicon-chevron-down',
+            nodeIcon: 'glyphicon glyphicon-bookmark',
+            data: defaultData
+        });
+
+        $('#treeview5').on('nodeSelected', function(event, data) {
+            // 事件代码...
+            console.log(JSON.stringify(data));
+        });
+    })
+</script>
+</body>
+</html>

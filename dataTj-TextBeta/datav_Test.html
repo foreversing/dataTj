@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DataV</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/bs.css">
+    <link rel="stylesheet" href="css/timeline.css">
+
+
+    <script src="js/vue.js"></script>
+    <script src="js/datav.map.vue.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.custom.js"></script>
+    <script src="js/jquery.timelinr-0.9.53.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/echarts-liquidfill.min.js"></script>
+    <script src="js/drawUtils.js"></script>
+    <script src="js/drawEcharts.js"></script>
+    <script src="js/drawEchartsData.js"></script>
+
+
+    <style>
+        html, body, #app {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+        .row {
+            height: 400px;
+        }
+        .height100 {
+            height: 100%;
+            padding: 56px 14px 0px 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <dv-full-screen-container>
+        <div class="container-fluid">
+            <div style="height: 116px;"></div>
+            <div style="height: 864px; overflow: hidden;">
+                <div class="JS_Scroll_H">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="饼图" >
+                                <div class="height100 JS_SolidPie"></div>
+                            </dv-border-box-11>
+                        </div>
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="百分比饼图">
+                                <div class="height100 JS_PercentPie_Student"></div>
+                            </dv-border-box-11>
+                        </div>
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="空心饼图">
+                                <div class="height100 JS_HollowPie_StuAbsence"></div>
+                            </dv-border-box-11>
+                        </div>
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="折线图">
+                                <div class="height100 JS_DivideTrend"></div>
+                            </dv-border-box-11>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+                        </div>
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+                        </div>
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+                        </div>
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+                        </div>
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+                        </div>
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+                        </div>
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+                        </div>
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+                        </div>
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+                        </div>
+                        <div class="col-md-3">
+                            <dv-border-box-11 :color="['blue', '#f3f3f3']" title="dv-border-box-11">dv-border-box-11</dv-border-box-11>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dv-full-screen-container>
+</div>
+
+<script>
+    var app = new Vue({
+        el: '#app'
+    })
+    $(function () {
+
+        initThemeDataVirtual();
+
+        setTimeout(function () {
+            //dvScroll_Height();
+            //initThemeDataVirtual();
+        },3000)
+
+    })
+
+
+    function initThemeDataVirtual(){
+        var solidData = [
+            {name: '走读学生', value: 5288, selected: true},
+            {name: '住宿学生', value: 2156, selected: false}
+
+        ];
+        //走读/住宿学生占比
+        dvChartData("solid",$(".JS_SolidPie")[0],"", jsonForArray(solidData,"name"), "", solidData);
+
+        var attendanceStudentDatas = [
+            {name: '', value: 0.97}
+
+        ];
+        //学生出勤率
+        dvChartData("percent",$(".JS_PercentPie_Student")[0],"","", "", attendanceStudentDatas);
+
+        var absentStudentDatas = [
+            {name: '因病', value: 6, compareCurrentMonthAgo: 0, max: 11, min: 9, average: 10},
+            {name: '因事', value: 2, compareCurrentMonthAgo: 1, max: 11, min: 9, average: 10},
+            {name: '未返哈', value: 1, compareCurrentMonthAgo: 1, max: 11, min: 9, average: 10}
+
+        ];
+        //学生缺勤占比
+        dvChartData("hollow",$(".JS_HollowPie_StuAbsence")[0],"","", "", absentStudentDatas);
+
+        var divideTrenddatas = [
+            {name: '教职工', value: [110, 112, 121, 154, 134, 120, 114, 121, 154, 134, 120, 114], xAxis: ["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]},
+            {name: '学生', value: [130, 112, 114, 134, 124, 130, 110, 114, 134, 124, 130, 110], xAxis: ["4-7", "4-8", "4-9", "4-10", "4-13", "4-14", "4-15", "4-16", "4-17", "4-20", "4-21"]}
+
+        ];
+        //师生传染病发展趋势
+        dvChartData("line",$(".JS_DivideTrend")[0],"师生传染病发展趋势",divideTrenddatas, divideTrenddatas, divideTrenddatas);
+    }
+</script>
+</body>
+</html>

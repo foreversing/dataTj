@@ -24,7 +24,7 @@ function dvChartData(flag, dom, title, legend, xAxis, data) {
         //饼图标题
         options.title.text = title;
         //图例名称
-        options.legend.data = legend;
+        options.legend.data = jsonForArray(legend, 'name');
         //饼图数据
         options.series[0].data = data;
 
@@ -101,12 +101,7 @@ function dvChartData(flag, dom, title, legend, xAxis, data) {
         //饼图数据
         options.series[0].name = "学生就餐类别统计";
         options.series[0].data = data;
-        /**
-         * .饼图{
-         *    width: 157px;
-         *    height: 140px;
-         *  }
-         */
+        
         //折线图
         dvPieAndLineChart_line(dom, domProp, options, data);
     }
