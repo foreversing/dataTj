@@ -44,7 +44,7 @@ function initThemeDataVirtual(){
 
         ];
         //学生综合出勤率
-        dvSummaryInfo($(".JS_Stu_Attendance"),stuAttendDatas);
+        //dvSummaryInfo($(".JS_Stu_Attendance"),stuAttendDatas);
 
         var teaAttendDatas = [
             {name: '教师应出', value: 68, compareCurrentMonthAgo: 0, max: 11, min: 9, average: 10},
@@ -292,7 +292,16 @@ function initThemeDataVirtual(){
 function dynamicState(){
     //ajax 返回数据
     var jsonList = [
-        {obj:"dvStudentTypeRate", type:"solid", title:"➤  走读/住宿学生占比", val: [{name: '走读学生', value: 5288, selected: true}, {name: '住宿学生', value: 2156, selected: false}]},
+        {obj:"dvStudentTypeRate", type:"solid", title:"➤  走读/住宿学生占比", val: [
+			{name: '走读学生', value: 5288, selected: true}, 
+			{name: '住宿学生', value: 2156, selected: false}
+			
+		]},
+        {obj:"dvStuAttendance", type:"", title:"", val: [
+            {name: '待复学', value: 28761, compareCurrentMonthAgo: 0, max: 11, min: 9, average: 10},
+            {name: '实际出勤', value: 7484, compareCurrentMonthAgo: 1, max: 11, min: 9, average: 10}
+
+        ]},
     ];
     //获取所有动态填充div
     $("#theme-" + current + " [DataVirtual]").each(function (i, el) {
@@ -302,14 +311,14 @@ function dynamicState(){
 				for(var it in jsonList) {
 					var item = jsonList[it];
 					if(item.obj == options) {
-						if(item.type != null) {
+						if(item.type != null && item.type != "") {
 							//表明获取的数据和页面div匹配
+							console.info("接口返回的Type为" + item.type + "，进行echart" + item.type + "图形展现操作");
 							dvChartData(item.type, el, item.title, item.val, item.val, item.val);
 						}else {
-							console.error("接口返回的Type为Null，请联系管理员！！！");
+							console.info("接口返回的Type为Null，进行基本数据展现操作");
+							dvSummaryInfo($(el),item.val);
 						}
-					}else {
-							console.error("接口返回的Obj和DataVirtual没有完全匹配上，请联系管理员！！！");
 					}
 				}
 			}else { 
