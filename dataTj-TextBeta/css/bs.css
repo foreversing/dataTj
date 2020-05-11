@@ -444,10 +444,7 @@ float: left;
     height:408px
 }
 
-#divideTrend{
-    height: 309px;
-}
-.JS_DivideTrend{
+.height-309{
     height: 309px;
 }
 
@@ -1093,6 +1090,7 @@ float: left;
     width:100%;
     height:144px;
     border:2px solid #114776;
+	cursor:pointer;
    
 }
 .camers .col-6:nth-child(odd){
@@ -1105,6 +1103,7 @@ float: left;
 .camers .col-6:nth-child(n+3){
     margin-top: 4px;
 }
+
 .text-light-blue{
     color:#8ba3be
 }

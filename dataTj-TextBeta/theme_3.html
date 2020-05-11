@@ -17,7 +17,7 @@
                                         <!-- start card-widget-->
                                         <div class="card-widget container-fluid card-num-layout flex-column mt-3 p-0">
                                             <div class="card-head">数据上报率</div>
-                                            <div class="card-main row flex-fill w-100 mt-4 JS_DataUploadedRate">
+                                            <div class="card-main row flex-fill w-100 mt-4" DataVirtual="dvDataUploadedRate">
                                             </div>
                                         </div>
                                         <!-- end card-widget-->
@@ -26,7 +26,7 @@
                                         <!-- start card-widget-->
                                         <div class="card-widget container-fluid mt-3">
                                             <div class="card-head">数据综合情况</div>
-                                            <div class="card-main row JS_DataUploadedComprehensive"></div>
+                                            <div class="card-main row" DataVirtual="dvDataUploadedComprehensive"></div>
                                         </div>
                                         <!-- end card-widget-->
                                     </div>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="data-widget-content full-mode row th2-height-spec" >
                             <div class="col-12">
-                                <div id="timeline">
+                                <div id="timeline" DataVirtual="dvTimeLine">
                                     <ul id="dates">
                                     </ul>
                                     <ul id="issues">
@@ -82,7 +82,7 @@
                 </div>
                 <div class="data-widget-content row ">
                     <div class="col-12 mt-3 mb-3">
-                        <div class="row camers">
+                        <div class="row camers" DataVirtual="dvCamerLists">
                             <div class="col-3">
                                 <div class="camer"><img
                                         src="http://www.longxuetong.com:8030/uploadFiles/uploadImgs/channel34.jpg"></div>
@@ -180,7 +180,7 @@
                             <th >上报时间</th>
                         </tr>
                         </thead>
-                        <tbody class="JS_ReportSchoolList">
+                        <tbody DataVirtual="dvReportSchoolList">
 
                         </tbody>
                     </table>

@@ -84,7 +84,7 @@
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid mt-3 todayRealTime">
                                     <div class="card-head">总体疫情</div>
-                                    <div class="card-main row JS_SickSituation"></div>
+                                    <div class="card-main row" DataVirtual="dvSickSituation"></div>
                                 </div>
                                 <!-- end card-widget-->
                             </div>
@@ -93,7 +93,7 @@
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid mt-3 todayRealTime">
                                     <div class="card-head">今日学生疫情</div>
-                                    <div class="card-main row JS_StudentSickSituation"></div>
+                                    <div class="card-main row" DataVirtual="dvStudentSickSituation"></div>
                                 </div>
                                 <!-- end card-widget-->
                             </div>
@@ -102,14 +102,14 @@
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid mt-3 todayRealTime">
                                     <div class="card-head">今日教职工疫情</div>
-                                    <div class="card-main row JS_TeacherSickSituation"></div>
+                                    <div class="card-main row" DataVirtual="dvTeacherSickSituation"></div>
                                 </div>
                                 <!-- end card-widget-->
                             </div>
 
                         </div>
                         <div class="row">
-                            <div class="col-12 mt-2 JS_DivideTrend"></div>
+                            <div class="col-12 mt-2 height-309" DataVirtual="dvDivideTrend"></div>
                         </div>
                     </div>
                 </div>
@@ -136,14 +136,14 @@
                         <div class="dorimg"></div>
                     </div>
                 </div>
-                <div class="data-widget-content row ">
+                <div class="data-widget-content row">
                     <div class="col-12">
                         <div class="row ">
                             <div class="col-2 pr-1">
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid card-num-layout flex-column mt-3 p-0 todayRealTime">
                                     <div class="card-head">学生出勤率</div>
-                                    <div class="card-main row flex-fill w-100 mt-4 JS_PercentPie_Student">
+                                    <div class="card-main row flex-fill w-100 mt-4" DataVirtual="dvStudentAlreadyRate">
                                     </div>
                                 </div>
                                 <!-- end card-widget-->
@@ -162,7 +162,7 @@
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid mt-3 todayRealTime">
                                     <div class="card-head">缺席学生</div>
-                                    <div class="card-main row JS_Stu_Absent"></div>
+                                    <div class="card-main row" DataVirtual="dvStuAbsent"></div>
                                 </div>
                                 <!-- end card-widget-->
                             </div>
@@ -171,7 +171,7 @@
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid card-num-layout flex-column mt-3 p-0 todayRealTime">
                                     <div class="card-head">学生缺席类别占比</div>
-                                    <div class="card-main row flex-fill w-100 mt-4 JS_HollowPie_StuAbsence">
+                                    <div class="card-main row flex-fill w-100 mt-4" DataVirtual="dvTodayStudentAbsentTypeRate">
                                     </div>
 
                                 </div>
@@ -184,7 +184,7 @@
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid card-num-layout flex-column mt-3 p-0 todayRealTime">
                                     <div class="card-head">教职工出勤率</div>
-                                    <div class="card-main row flex-fill w-100 mt-4 JS_PercentPie_Teacher">
+                                    <div class="card-main row flex-fill w-100 mt-4" DataVirtual="dvTeacherAlreadyRate">
                                     </div>
 
                                 </div>
@@ -197,7 +197,7 @@
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid mt-3 todayRealTime">
                                     <div class="card-head">教职工综合出勤</div>
-                                    <div id="todayAlreadyTeacher" class="card-main row JS_Tea_Attendance"></div>
+                                    <div id="todayAlreadyTeacher" class="card-main row" DataVirtual="dvTeacherAttendance"></div>
 
                                 </div>
                                 <!-- end card-widget-->
@@ -209,7 +209,7 @@
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid mt-3 todayRealTime">
                                     <div class="card-head">缺席教职工</div>
-                                    <div id="todayAbsentTeacher" class="card-main row JS_Tea_Absent"></div>
+                                    <div id="todayAbsentTeacher" class="card-main row" DataVirtual="dvTeacherAbsent"></div>
                                 </div>
                                 <!-- end card-widget-->
                             </div>
@@ -218,7 +218,7 @@
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid card-num-layout flex-column mt-3 p-0 todayRealTime">
                                     <div class="card-head">教职工缺席类别占比</div>
-                                    <div class="card-main row flex-fill w-100 mt-4 JS_HollowPie_TeaAbsence">
+                                    <div class="card-main row flex-fill w-100 mt-4" DataVirtual="dvTodayTeacherAbsentTypeRate">
                                     </div>
 
                                 </div>
@@ -260,7 +260,7 @@
                                 </div>
                             </div>
                             <div class="data-widget-content row th1-height">
-                                <div class="col-12 JS_StudentAbsentBySick">
+                                <div class="col-12" DataVirtual="dvStudentAbsentBySick">
                                 </div>
                             </div>
                             <div class="data-widget-footer row">
@@ -288,7 +288,7 @@
                                 </div>
                             </div>
                             <div class="data-widget-content row th1-height">
-                                <div class="col-12 JS_StudentTeacherAlreadyTrend">
+                                <div class="col-12" DataVirtual="dvStudentTeacherAlreadyTrend">
                                 </div>
                             </div>
                             <div class="data-widget-footer row">

@@ -864,11 +864,6 @@ function dvPieAndLineChart_line(dom, domProp, options, datas) {
         var domObj = document.getElementById(ids);
         var chartobj = echarts.init(domObj);
         chartobj.setOption(optionLine);
-        // setInterval(function(){
-        //     var chartobj = echarts.init(domObj);
-        //     chartobj.setOption(optionLine);
-        // },1000);
-
 
     }
     $(dom).next().children().children("div:first-child").hide();

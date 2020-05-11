@@ -16,7 +16,7 @@
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid mt-3">
                                     <div class="card-head">体温异常累计</div>
-                                    <div class="card-main row JS_AbnormalTemperature"></div>
+                                    <div class="card-main row" DataVirtual="dvAbnormalTemperature"></div>
                                 </div>
                                 <!-- end card-widget-->
                             </div>
@@ -24,7 +24,7 @@
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid mt-3">
                                     <div class="card-head">今日体温监测</div>
-                                    <div class="card-main row JS_TemperatureWatch"></div>
+                                    <div class="card-main row" DataVirtual="dvTemperatureWatch"></div>
                                 </div>
                                 <!-- end card-widget-->
                             </div>
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="data-widget-content row th1-height">
-                                <ul id="watcher" class="list-content JS_Scroll_H">
+                                <ul id="watcher" class="list-content" DataVirtual="dvMonitorDynamic">
                                 </ul>
                             </div>
                             <div class="data-widget-footer row">
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                             <div class="data-widget-content row th3-height">
-                                <div class="col-12 JS_StudentTeacherAbnormalTemperatureTrend">
+                                <div class="col-12" DataVirtual="dvStudentTeacherAbnormalTemperatureTrend">
                                 </div>
                             </div>
                             <div class="data-widget-footer row">
@@ -115,7 +115,7 @@
                             <div class="data-widget-content row th3-height">
                                 <div class="col-12">
                                     <div class="row h-100">
-                                        <div class="col-5 card-num-layout JS_StudentLunch" dvGroupChart = "studentLunch">
+                                        <div class="col-5 card-num-layout" DataVirtual="dvStudentLunch" dvGroupChart = "studentLunch">
                                         </div>
                                         <div class="col-7 pl-0 pr-1">
                                             <div class="d-table h-100 w-100">
@@ -156,7 +156,7 @@
                             <div class="data-widget-content row th3-height">
                                 <div class="col-12">
                                     <div class="row h-100">
-                                        <div class="col-5 card-num-layout JS_StudentTransportType" dvGroupChart = "studentTransportType">
+                                        <div class="col-5 card-num-layout" DataVirtual="dvStudentTransportType" dvGroupChart = "studentTransportType">
                                         </div>
                                         <div class="col-7 pl-0 pr-1">
                                             <div class="d-table h-100 w-100">
@@ -194,7 +194,7 @@
                             <div class="data-widget-content row th3-height">
                                 <div class="col-12">
                                     <div class="row h-100">
-                                        <div class="col-5 card-num-layout JS_TeacherTransportType" dvGroupChart = "teacherTransportType">
+                                        <div class="col-5 card-num-layout" DataVirtual="dvTeacherTransportType" dvGroupChart = "teacherTransportType">
                                         </div>
                                         <div class="col-7 pl-0 pr-1">
                                             <div class="d-table h-100 w-100">
@@ -239,11 +239,11 @@
                                 <!-- start card-widget-->
                                 <div class="card-widget container-fluid mt-3">
                                     <div class="card-head">全面复工复学</div>
-                                    <div class="card-main row JS_RecoveryStudentTeacher"></div>
+                                    <div class="card-main row" DataVirtual="dvRecoveryStudentTeacher"></div>
                                 </div>
                                 <!-- end card-widget-->
                             </div>
-                            <div class="col-8 pr-1 JS_IncreaseDivideRecoveryTrend"></div>
+                            <div class="col-8 pr-1" DataVirtual="dvIncreaseDivideRecoveryTrend"></div>
                         </div>
                     </div>
                 </div>
@@ -291,7 +291,7 @@
                                         <div class="card-r2"></div>
                                     </div>
                                     <div class="col-10">
-                                        <div class="JS_Scroll_H">
+                                        <div class="JS_Scroll_H" >
                                         <div class="row h-100 pr-1 mr-1" id="primary_school_list">
                                             <div class="col-12 hhText">尚未复学</div>
                                         </div>
@@ -393,13 +393,6 @@
                                         </div>
                                     </div>
                                 </li>
-
-
-
-
-
-
-
                             </ul>
                         </div>
                     </div>

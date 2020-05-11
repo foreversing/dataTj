@@ -106,10 +106,6 @@ function dvChartData(flag, dom, title, legend, xAxis, data) {
         dvPieAndLineChart_line(dom, domProp, options, data);
     }
 
-
-    // charts_JSON.push({obj : dom, opt : eval(options)});
-    // console.log(JSON.stringify(charts_JSON));
-    // console.log("obj:" + JSON.stringify(charts_JSON[0].obj));
     var chartDom = echarts.init(dom);
     chartDom.setOption(options);
 }
@@ -168,8 +164,8 @@ function dvSpecialItems($dom, data) {
  *      滚动内容为添加class的div中的内容
  *      有父节点，子节点为滚动内容
  * */
-function dvScroll_Height() {
-    $(".JS_Scroll_H").each(function (i, el) {
+function dvScroll_Height(el) {
+    $(el).each(function (i, el) {
         var li = $(this).parent();
         var li_h = $(li).height();
         var el_h = $(this).height();
@@ -213,6 +209,84 @@ function dvMakeListItems(datas){
         dvScroll_li();
     },1000);
 }
+//复工学校信息
+function dvSchoolInfos(datas){
+	for (let i = 0; i < data.length; i++) {
+	    let type = data[i].type;
+	    let count = data[i].count;
+	    if (1 == type) {
+	        // 小学
+	        $("#primary_school").empty();
+	        $("#primary_school").html(count + "<small>所</small>");
+	        if (count > 0) {
+	            $("#primary_school_list").empty();
+	            for (let j = 0; j < count; j++) {
+	                let schoolHtml = '<div class="col-4 gText">' + data[i].schoolList[j].name + '</div>';
+	                $("#primary_school_list").append(schoolHtml);
+	            }
+	        }
+	    }
+	
+	    if (2 == type) {
+	        // 初中
+	        $("#junior_school").empty();
+	        $("#junior_school").html(count + "<small>所</small>");
+	        if (count > 0) {
+	            $("#junior_school_list").empty();
+	            for (let j = 0; j < count; j++) {
+	                let schoolHtml = '<div class="col-4 gText">' + data[i].schoolList[j].name + '</div>';
+	                $("#junior_school_list").append(schoolHtml);
+	            }
+	        }
+	    }
+	
+	    if (3 == type) {
+	        // 高中
+	        $("#senior_school").empty();
+	        $("#senior_school").html(count + "<small>所</small>");
+	        if (count > 0) {
+	            $("#senior_school_list").empty();
+	            for (let j = 0; j < count; j++) {
+	                let schoolHtml = '<div class="col-4 gText">' + data[i].schoolList[j].name + '</div>';
+	                $("#senior_school_list").append(schoolHtml);
+	            }
+	        }
+	    }
+	
+	    // // TODO : 大学类型？？
+	    // if (1 == type) {
+	    //     // 大学
+	    //     $("#primary_school").empty();
+	    //     $("#primary_school").html(count + "<small>所</small>");
+	    //     if (count > 0) {
+	    //         $("#primary_school_list").empty();
+	    //         for (let j = 0; j < count; j++) {
+	    //             let schoolHtml = '<div class="col-4 gText">' + data[i].schoolList[j].name + '</div>';
+	    //             $("#primary_school_list").append(schoolHtml);
+	    //         }
+	    //     }
+	    // }
+	}
+}
+
+//直播视频信息
+function dvTemperatureImgInfos($dom,datas){
+	if (datas != null && datas.length > 0) {
+	    $dom.empty();
+	    for (var i = 0; i < datas.length; i++) {
+	        var str = "";
+	        str += "<div class='col-3' onclick=\"window.open('" + datas[i].action_url + "')\">";
+	        str += "    <div class='camer'>";
+	        str += "        <img src=" + datas[i].preimg_url + ">";
+	        str += "    </div>";
+	        str += "    <div class='w-100 text-center text-light-blue'>" + datas[i].cam_text + "</div>";
+	        str += "</div>";
+	        $dom.append(str);
+	    }
+	}
+}
+
+
 
 function dvScroll_li(){
     scrollAfterAppends();
