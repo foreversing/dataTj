@@ -1,9 +1,4 @@
 const reqUrl = "http://172.16.0.188:9090/";
-//页面初始化
-function initThemeDataVirtual() {
-	getDatasForAjax();
-}
-
 
 /**
  * read me
@@ -22,11 +17,11 @@ function initThemeDataVirtual() {
  * 
  * */
 
-//ajax 返回数据
+//返回数据
 var jsonList = [];
 	
-//ajax获取数据部分
-function getDatasForAjax() {
+//获取数据部分
+function getDatasForWS() {
 	jsonList = [{
 			obj: "dvStudentTypeRate",
 			type: "solid",
@@ -686,52 +681,103 @@ function getDatasForAjax() {
 	];
 	
 	//初始化绘制页面
-	dyRevealCom(jsonList);
+	initNew(jsonList)
 }
 
-//页面展现部分-公共方法
-function dyRevealCom(jsonList) {
-	//获取所有动态填充div
-	$("#theme-" + current + " [DataVirtual]").each(function(i, el) {
-	// $("#main [DataVirtual]").each(function(i, el) {
-		var options = $(el).attr("DataVirtual");
-		if (options != null) {
-			if (jsonList != null && jsonList.length > 0) {
-				for (var it in jsonList) {
-					var item = jsonList[it];
-					if (item.obj == options) {
-						if (item.type != null && item.type != "") {
-							//表明获取的数据和页面div匹配
-							dvChartData(item.type, el, item.title, item.val, item.val, item.val);
-						} else {
-							//单独添加方法
-							if (item.obj == "dvMonitorDynamic") {
-								//监测动态-展现
-								dvMakeListItems(item.val);
-							} else if (item.obj == "dvTimeLine") {
-								dvMakeTimeLine($(el), item.val);
-							} else if (item.obj == "dvReportSchoolList") {
-								//列表信息
-								dvInfoList($(el), item.val);
-							} else if (item.obj == "dvCamerLists") {
-								//测温卡口
-								dvTemperatureImgInfos($(el), item.val);
-							} else {
-								//公共展示方法
-								dvSummaryInfo($(el), item.val);
-							}
-						}
-					}
-				}
-			} else {
-				console.error("接口返回的值为Null，请联系管理员！！！");
+//新初始化方法
+function initNew(jsonList){
+	/**
+	 * 根据type 0 1 区分是增量还是全量
+	 * */
+	if(null != jsonList && jsonList.lenght >0){
+		for (var it in jsonList) {
+			var item = jsonList[it];
+			//0 增量 1全量
+			if(item.type == "0"){
+				dyIncrementCom(item)
+			}else if(item.type == "1"){
+				dyCompleteData(item)
 			}
+			//刷新echarts
+			dyUpdateEchart(item)
 		}
-	});
+	}else{
+		console.error("接口返回的值为Null，请联系管理员！！！");
+	}
+	 
 	//复学学校信息滚动
 	dvScroll_Height($(".JS_Scroll_H"));
 }
 
+//增量
+function dyIncrementCom(item) {
+	//获取所有动态填充div
+	$("#main [DataVirtual]").each(function(i, el) {
+		var options = $(el).attr("DataVirtual");
+		if (options != null) {
+			if (item.obj == options) {
+				//单独添加方法
+				if (item.obj == "dvMonitorDynamic") {
+					//监测动态-展现
+					dvMakeListItems(item.val);
+				}
+			}
+		}
+	});
+}
+
+//全量
+function dyCompleteData(item){
+	$("#main [DataVirtual]").each(function(i, el) {
+		var options = $(el).attr("DataVirtual");
+		if (options != null) {
+			if (item.obj == options) {
+				//单独添加方法
+				if (item.obj == "dvTimeLine") {
+					dvMakeTimeLine($(el), item.val);
+				} else if (item.obj == "dvReportSchoolList") {
+					//列表信息
+					dvInfoList($(el), item.val);
+				} else if (item.obj == "dvCamerLists") {
+					//测温卡口
+					dvTemperatureImgInfos($(el), item.val);
+				} else if (item.obj == "dvStuAttendance" || item.obj == "dvStuAbsent" || 
+				item.obj == "dvTeacherAttendance" || item.obj == "dvTeacherAbsent" || 
+				item.obj == "dvSickSituation" || item.obj == "dvStudentSickSituation" || 
+				item.obj == "dvTeacherSickSituation" || item.obj == "dvAbnormalTemperature" || 
+				item.obj == "dvTemperatureWatch" || item.obj == "dvRecoveryStudentTeacher" || 
+				item.obj == "dvDataUploadedComprehensive") {
+					//公共展示方法
+					dvSummaryInfo($(el), item.val);
+				}else{
+					//表明获取的数据和页面div匹配
+					dvChartData(item.type, el, item.title, item.val, item.val, item.val);
+				}
+			}
+		}
+	});
+}
+
+//刷新echart图形
+function dyUpdateEchart(item){
+	$("#theme-" + current + " [DataVirtual]").each(function(i, el) {
+		var options = $(el).attr("DataVirtual");
+		if (options != null) {
+			if (item.obj == options) {
+				//根据页面重新绘制echart图形
+				if (item.obj != "dvTimeLine" && item.obj != "dvReportSchoolList" && item.obj != "dvCamerLists" && 
+				item.obj != "dvStuAttendance" && item.obj != "dvStuAbsent" && 
+				item.obj != "dvTeacherAttendance" && item.obj != "dvTeacherAbsent" && 
+				item.obj != "dvSickSituation" && item.obj != "dvStudentSickSituation" && 
+				item.obj != "dvTeacherSickSituation" && item.obj != "dvAbnormalTemperature" && 
+				item.obj != "dvTemperatureWatch" && item.obj != "dvRecoveryStudentTeacher" && 
+				item.obj != "dvDataUploadedComprehensive") {
+					dvChartData(item.type, el, item.title, item.val, item.val, item.val);
+				}
+			}
+		}
+	});
+}
 
 /**
  * 基本数据统计
@@ -780,6 +826,7 @@ function dealThemes() {
 	else w = 1;
 	gotos(w);
 }
+
 var flag = false;
 function gotos(themeid) {
 	var theme = $("#theme-" + themeid);
@@ -797,18 +844,18 @@ function gotos(themeid) {
 				theme.off(animEndEventName);
 				current = themeid;
 				theme.removeClass(inClass);
-				//刷新所有echart
-				dyRevealCom(jsonList);
+				
+				//翻页时刷新数据
+				initNew(jsonList)
+				if(current == "2"){
+					setTimeout(function () {
+					    dvScroll_li();
+					},1000);
+				}
 			});
 		});
 	}
 }
-
-
-
-
-
-
 
 function jsonForArray(objJson, property) {
 	var array = [];
@@ -862,7 +909,6 @@ function increase(objTarget) {
 		objTarget.removeClass('is-increment-visible');
 	}, 200);
 };
-
 
 function clientSideInclude(id, url) {
 	var req = false;

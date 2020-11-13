@@ -21,7 +21,6 @@
 <body>
 <div id="app">
     <dv-full-screen-container>
-
         <div id="top-header">
             <dv-decoration-8 class="header-left-decoration"></dv-decoration-8>
             <dv-decoration-5 class="header-center-decoration"></dv-decoration-5>
@@ -29,7 +28,7 @@
             <div class="center-title">香坊教育防疫进行时</div>
         </div>
 
-        <div id="main">
+       <div id="main">
             <div id="theme-1" class="container-fluid ">
             </div>
 
@@ -37,6 +36,9 @@
             </div>
 
             <div id="theme-3" class="container-fluid" hidden>
+            </div>
+			
+			<div id="theme-4" class="container-fluid" hidden>
             </div>
 
         </div>
@@ -61,6 +63,9 @@
     <script src="js/drawUtils.js"></script>
     <script src="js/drawEcharts.js"></script>
     <script src="js/drawEchartsData.js"></script>
+	
+	
+    <script src="js/webSocket.js"></script>
 
 <script>
     var app = new Vue({
@@ -86,9 +91,18 @@
         clientSideInclude('theme-1', 'theme_1.html');
         clientSideInclude('theme-2', 'theme_2.html');
         clientSideInclude('theme-3', 'theme_3.html');
+        clientSideInclude('theme-4', 'theme_4.html');
         clientSideInclude('bottom-footer', 'bottom_footer.html');
         initThemeDataVirtual();
         setInterval(dealThemes, 180000);
+		
+		
+		var WS = new WBT()
+		var b = {
+		    appid:"xffffff"
+		}
+		//发送消息
+		WS.send(b)
     });
 </script>
 

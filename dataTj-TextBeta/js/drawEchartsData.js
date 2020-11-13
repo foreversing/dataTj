@@ -269,6 +269,16 @@ function dvSchoolInfos(datas){
 	}
 }
 
+/**
+ * 测温卡口 -- 图片信息
+ * */
+ function func(){
+ 	$("#camerLists").children().slice(0, 4).clone().appendTo($("#camerLists"));
+ 	 $("#camerLists").children().slice(0, 4).fadeOut(500,function(){
+ 	  $(this).remove();
+	});
+ }
+
 //直播视频信息
 function dvTemperatureImgInfos($dom,datas){
 	if (datas != null && datas.length > 0) {
@@ -283,6 +293,24 @@ function dvTemperatureImgInfos($dom,datas){
 	        str += "</div>";
 	        $dom.append(str);
 	    }
+		
+		var interval;
+		
+		//图片大于12张时 开启自动刷新效果
+		if(datas.length > 12){
+			if(current == 3){
+				interval = setInterval(func, 5000); //重新启动即可
+				//鼠标移入停止刷新
+				$("#camerLists").mouseover(function(){
+					clearInterval(interval);//停止
+				});
+				$("#camerLists").mouseout(function(){
+					interval = setInterval(func, 5000); //重新启动即可
+				});
+			}else{
+				clearInterval(interval);//停止
+			}
+		}
 	}
 }
 

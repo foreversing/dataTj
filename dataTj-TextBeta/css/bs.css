@@ -1090,8 +1090,11 @@ float: left;
     width:100%;
     height:144px;
     border:2px solid #114776;
-	cursor:pointer;
    
+}
+.camers {
+	max-height: 500px;
+	overflow: hidden;
 }
 .camers .col-6:nth-child(odd){
     padding-right: 4px;
@@ -1102,6 +1105,9 @@ float: left;
 
 .camers .col-6:nth-child(n+3){
     margin-top: 4px;
+}
+.camers div img{
+	cursor:pointer;
 }
 
 .text-light-blue{
